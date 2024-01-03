@@ -1,0 +1,7 @@
+{
+  "name": "ionicFitness",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
