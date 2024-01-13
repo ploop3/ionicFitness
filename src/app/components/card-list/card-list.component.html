@@ -1,3 +1,21 @@
-<p>
-  card-list works!
-</p>
+<ion-row>
+  <ion-col size="12">
+    <ion-item class="ion-activated">
+      <ion-label color="danger" class="ion-text-uppercase my-label"
+        >Bloque {{ workoutIndex + 1 }} - {{ workout.name || "No name" }}
+      </ion-label>
+    </ion-item>
+    <div class="ion-text-uppercase title"></div>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col
+    size="12"
+    sizeLg="4"
+    sizeMd="6"
+    sizeSm="12"
+    *ngFor="let exercise of workout.exercises"
+  >
+    <app-card [exercise]="exercise"></app-card>
+  </ion-col>
+</ion-row>

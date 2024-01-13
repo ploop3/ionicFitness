@@ -1,3 +1,11 @@
-<app-header titulo="Day 2"></app-header>
+<app-header titulo="Day {{dayNumber}}"></app-header>
 
-<ion-content [fullscreen]="true"> </ion-content>
+<ion-content padding>
+  <ion-grid fixed>
+    <app-card-list
+      *ngFor="let workout of day.workouts; index as i"
+      [workout]="workout"
+      [workoutIndex]="i"
+    ></app-card-list>
+  </ion-grid>
+</ion-content>

@@ -14,7 +14,7 @@ export class HomePage {
     {
       icon: 'american-football',
       name: 'Day',
-      redirectTo: '/day',
+      redirectTo: '/day/1',
     },
     {
       icon: 'alert-circle-outline',
