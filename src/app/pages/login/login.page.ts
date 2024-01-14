@@ -19,11 +19,30 @@ export class LoginPage implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('$$$$$$$$$$$$$$$$');
+    // this.isLoggedIn();
+    // this.authService.getAuthStatus();
+    this.authService.currentAuthStatus.subscribe(
+      (authStatus) => (this.isLogin = authStatus)
+    );
+  }
 
   isLoggedIn() {
-    //if loggedIn
-    //Navigate to Home
+    try {
+      const user = this.authService.getProfile();
+      console.log(user);
+      if (user != null) {
+        console.log(user.displayName, 'is authenticated');
+        this.isLogin = true;
+        this.router.navigateByUrl('/home');
+      } else {
+        console.error('User not authenticated');
+        this.isLogin = false;
+      }
+    } catch (error) {
+      console.error('User not authenticated');
+    }
   }
 
   changeType() {
@@ -41,13 +60,12 @@ export class LoginPage implements OnInit {
     this.authService
       .login(form.value.email, form.value.password)
       .then((data) => {
-        console.log(data);
         this.router.navigateByUrl('/home');
         this.isLogin = false;
         form.reset();
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.code);
         this.isLogin = false;
       });
   }

@@ -5,8 +5,8 @@
 
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <ion-list lines="none">
-      <ion-item color="ligth" class="ion-margin-bottom">
-        <ion-icon name="mail" slot="start" color="primary"> </ion-icon>
+      <ion-item class="custom" color="ligth" class="ion-margin-bottom">
+        <ion-icon name="mail-outline" slot="start" color="primary"> </ion-icon>
         <ion-input
           type="email"
           name="email"
@@ -27,7 +27,7 @@
       </ion-text>
 
       <ion-item color="ligth">
-        <ion-icon name="key" slot="start" color="primary"> </ion-icon>
+        <ion-icon name="key-outline" slot="start" color="primary"> </ion-icon>
         <ion-icon
           color="primary"
           slot="end"
@@ -36,6 +36,7 @@
         ></ion-icon>
 
         <ion-input
+          class="input"
           [type]="type ? 'password': 'text'"
           name="password"
           ngModel
@@ -55,7 +56,9 @@
       </ion-text>
     </ion-list>
 
-    <p class="ion-text-right">Forgot Password</p>
+    <div class="ion-text-right forgotpassword" style="color: #ffc33f">
+      <a [routerLink]="['/reset-password']">Forgot Password</a>
+    </div>
 
     <ion-button
       *ngIf="!isLogin"
@@ -69,7 +72,7 @@
     </ion-button>
 
     <div class="ion-text-center" *ngIf="isLogin">
-      <ion-button shape="round" color="primary" [disabled]="!f.valid">
+      <ion-button shape="round" color="secondary" [disabled]="!f.valid">
         <ion-spinner name="circles"></ion-spinner>
       </ion-button>
     </div>
@@ -78,7 +81,9 @@
   <ion-text color="primary" class="ion-text-center">
     <p class="marginTop">
       Don't have an account?
-      <b>Sign up</b>
+      <a [routerLink]="['/signup']">
+        <b>Sign up</b>
+      </a>
     </p>
   </ion-text>
 </ion-content>
