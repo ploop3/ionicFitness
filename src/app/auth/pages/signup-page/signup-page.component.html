@@ -1,0 +1,109 @@
+<ion-content class="ion-padding">
+  <div>
+    <p>Registro</p>
+  </div>
+
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-list lines="none">
+      <ion-item color="ligth" class="ion-margin-bottom">
+        <ion-icon name="person-outline" slot="start" color="primary">
+        </ion-icon>
+        <ion-input
+          class="input"
+          type="text"
+          name="name"
+          ngModel
+          #nameCtrl="ngModel"
+          placeholder="Name"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-text
+        color="danger"
+        *ngIf="!nameCtrl.valid && nameCtrl.touched"
+        class="ion-text-center"
+      >
+        <p class="errorMsg">* Please enter a valid name</p>
+      </ion-text>
+
+      <ion-item color="ligth" class="ion-margin-bottom">
+        <ion-icon name="mail-outline" slot="start" color="primary"> </ion-icon>
+        <ion-input
+          class="input"
+          type="email"
+          name="email"
+          ngModel
+          email
+          #emailCtrl="ngModel"
+          placeholder="Email"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-text
+        color="danger"
+        *ngIf="!emailCtrl.valid && emailCtrl.touched"
+        class="ion-text-center"
+      >
+        <p class="errorMsg">* Please enter a valid email address</p>
+      </ion-text>
+
+      <ion-item color="ligth">
+        <ion-icon name="key-outline" slot="start" color="primary"> </ion-icon>
+        <ion-icon
+          color="primary"
+          slot="end"
+          (click)="changeType()"
+          [name]="type ? 'eye-outline' : 'eye-off-outline'"
+        ></ion-icon>
+
+        <ion-input
+          class="input"
+          [type]="type ? 'password' : 'text'"
+          name="password"
+          ngModel
+          #passwordCtrl="ngModel"
+          placeholder="Password"
+          required
+          minlength="8"
+        ></ion-input>
+      </ion-item>
+
+      <ion-text
+        color="danger"
+        *ngIf="!passwordCtrl.valid && passwordCtrl.touched"
+        class="ion-text-center"
+      >
+        <p class="errorMsg">* Password must be be minimum 8 characters long</p>
+      </ion-text>
+    </ion-list>
+
+    <ion-button
+      *ngIf="!isLogin"
+      [disabled]="!f.valid"
+      expand="block"
+      shape="round"
+      type="submit"
+      color="primary"
+    >
+      <ion-icon slot="start" name="person-add"></ion-icon>
+      <ion-label> Sign up </ion-label>
+    </ion-button>
+
+    <div class="ion-text-center" *ngIf="isLogin">
+      <ion-button shape="round" color="primary" [disabled]="!f.valid">
+        <ion-spinner name="circles"></ion-spinner>
+      </ion-button>
+    </div>
+  </form>
+
+  <ion-text color="primary" class="ion-text-center">
+    <p class="marginTop">
+      Already a member?
+      <a [routerLink]="['/auth/login']">
+        <b>Sign in</b>
+      </a>
+    </p>
+  </ion-text>
+</ion-content>
