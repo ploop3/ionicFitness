@@ -29,7 +29,6 @@ export class SignupPageComponent implements OnInit {
   signup(email: string, password: string) {
     this.authService.register(email, password).subscribe({
       next: () => {
-        console.log('success user created');
         this.router.navigateByUrl('/fitness');
       },
       error: (errorMsg) => {

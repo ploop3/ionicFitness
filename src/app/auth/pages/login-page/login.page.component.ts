@@ -36,7 +36,6 @@ export class LoginPageComponent {
   login(email: string, password: string) {
     this.authService.login(email, password).subscribe({
       next: () => {
-        console.log('success');
         this.router.navigateByUrl('/fitness');
       },
       error: (errorMsg) => {

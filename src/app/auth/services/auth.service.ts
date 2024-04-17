@@ -44,13 +44,10 @@ export class AuthService implements OnDestroy {
     this.authStateSubscription = this.authState$.subscribe({
       next: (aUser: User | null) => {
         if (aUser != null) {
-          console.log('success auth detection');
-          console.log(aUser);
           this.setAuthentication(aUser, aUser.uid);
-          console.log(this.authStatus());
+          console.log('success auth detection');
         } else {
           console.log('Not user authenticated');
-          console.log(this.authStatus());
           this._authStatus.set(AuthStatus.notAuthenticated);
         }
       },
@@ -70,7 +67,6 @@ export class AuthService implements OnDestroy {
   login(email: string, password: string): Observable<any> {
     return from(signInWithEmailAndPassword(this.auth, email, password)).pipe(
       map((response) => {
-        // console.log(response.user);
         this.setAuthentication(response.user, response.user.uid);
       }),
 
@@ -102,7 +98,6 @@ export class AuthService implements OnDestroy {
       createUserWithEmailAndPassword(this.auth, email, password)
     ).pipe(
       map((response) => {
-        // console.log(response.user);
         this.setAuthentication(response.user, response.user.uid);
       }),
 

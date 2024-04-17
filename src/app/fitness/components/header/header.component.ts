@@ -15,10 +15,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
-  sayHi() {
+  nextDay() {
     this.dayNumber =
       Number(this.activatedRoute.snapshot.paramMap.get('id')) + 1;
     if (!Number.isFinite(this.dayNumber)) return;
-    this.router.navigateByUrl(`/day/${this.dayNumber}`);
+    this.router.navigateByUrl(`/fitness/day/${this.dayNumber}`);
   }
 }
