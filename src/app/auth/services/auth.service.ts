@@ -43,11 +43,9 @@ export class AuthService implements OnDestroy {
   constructor() {
     this.authStateSubscription = this.authState$.subscribe({
       next: (aUser: User | null) => {
-        if (aUser != null) {
+        if (aUser !== null) {
           this.setAuthentication(aUser, aUser.uid);
-          console.log('success auth detection');
         } else {
-          console.log('Not user authenticated');
           this._authStatus.set(AuthStatus.notAuthenticated);
         }
       },
@@ -122,7 +120,6 @@ export class AuthService implements OnDestroy {
     signOut(this.auth)
       .then(() => {
         //Signout successful
-        console.log('Signout successful');
         this._currentUser.set(null);
         this._authStatus.set(AuthStatus.notAuthenticated);
       })

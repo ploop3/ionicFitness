@@ -16,13 +16,10 @@ export class DayPageComponent implements OnInit {
   constructor(
     private fitnessService: FitnessService,
     private activatedRoute: ActivatedRoute
-  ) {
-    console.log(fitnessService.getCacheStore());
-  }
+  ) {}
 
   ngOnInit() {
     this.dayNumber = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    // this.dayNumber = 3;
     if (!Number.isFinite(this.dayNumber)) return;
     this.day = this.fitnessService.getDay(this.dayNumber);
   }

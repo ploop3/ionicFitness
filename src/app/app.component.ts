@@ -28,7 +28,7 @@ export class AppComponent {
         return;
 
       case AuthStatus.authenticated:
-        this.router.navigateByUrl('/fitness');
+        this.router.navigateByUrl(localStorage.getItem('url') || '/fitness');
         return;
 
       case AuthStatus.notAuthenticated:

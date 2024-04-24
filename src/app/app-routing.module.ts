@@ -6,20 +6,24 @@ import { isAuthenticatedGuard } from './auth/guards/is-authenticated.guard';
 const routes: Routes = [
   {
     path: 'fitness',
+    canActivate: [isAuthenticatedGuard],
     loadChildren: () =>
       import('./fitness/fitness.module').then((m) => m.FitnessModule),
-    canActivate: [isAuthenticatedGuard],
     // canMatch: [AuthGuard],
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
     canActivate: [isNotAuthenticatedGuard],
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
     // canMatch: [LoginGuard],
   },
   {
     path: '',
     pathMatch: 'full',
+    redirectTo: 'fitness',
+  },
+  {
+    path: '**',
     redirectTo: 'fitness',
   },
 ];
