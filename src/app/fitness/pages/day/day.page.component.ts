@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { FitnessService } from 'src/app/fitness/services/fitness.service';
 
-import { Day } from '../../interfaces/training.interface';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,18 +8,26 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './day.page.component.html',
   styles: [],
 })
-export class DayPageComponent implements OnInit {
-  public day: Day = { workouts: [] };
-  public dayNumber: number = 4;
+export class DayPageComponent {
+  public day: { [key: string]: any } = {};
+  public dayNumber: number = 1;
 
   constructor(
     private fitnessService: FitnessService,
     private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  public finishLoadingStorage = computed<boolean>(() => {
+    if (this.fitnessService.cacheStoreOnline() === null) {
+      return false;
+    }
+    this.loadDay();
+    return true;
+  });
+
+  private loadDay() {
     this.dayNumber = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     if (!Number.isFinite(this.dayNumber)) return;
-    this.day = this.fitnessService.getDay(this.dayNumber);
+    this.day = this.fitnessService.cacheStoreOnline()![this.dayNumber];
   }
 }

@@ -1,8 +1,9 @@
 <ion-row>
   <ion-col size="12">
     <ion-item class="ion-activated">
-      <ion-label color="danger" class="ion-text-uppercase my-label"
-        >Bloque {{ workoutIndex + 1 }} - {{ workout.name || "No name" }}
+      <ion-label color="danger" class="ion-text-uppercase my-label">
+        Bloque {{ workoutIndex + 1 }} -
+        {{ workout["n"] || "No name" }}
       </ion-label>
     </ion-item>
     <div class="ion-text-uppercase title"></div>
@@ -14,8 +15,9 @@
     sizeLg="4"
     sizeMd="6"
     sizeSm="12"
-    *ngFor="let exercise of workout.exercises"
+    *ngFor="let key of workout['exs'] | objectNgFor"
   >
-    <app-card [exercise]="exercise"></app-card>
+    <app-card [exercise]="workout['exs'][key]"></app-card>
+    <!-- {{ workout["exs"][key] | json }} -->
   </ion-col>
 </ion-row>

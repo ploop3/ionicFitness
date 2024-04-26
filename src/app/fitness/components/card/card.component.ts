@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Exercise } from '../../interfaces/training.interface';
 
 @Component({
   selector: 'app-card',
@@ -11,7 +10,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {}
   @Input()
-  public exercise!: Exercise;
+  public exercise: { [key: string]: any } = {};
 
   onClick() {
     alert('Hi');

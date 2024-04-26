@@ -1,18 +1,19 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, OnInit, computed, effect, inject } from '@angular/core';
 import { AuthService } from './auth/services/auth.service';
 import { Router } from '@angular/router';
 import { AuthStatus } from './auth/interfaces';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styles: [],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  constructor() {}
+  constructor(private ionStorage: Storage) {}
 
   public finishedAuthCheck = computed<boolean>(() => {
     if (this.authService.authStatus() === AuthStatus.checking) {
@@ -35,4 +36,10 @@ export class AppComponent {
         this.router.navigateByUrl('/auth/login');
     }
   });
+
+  async ngOnInit() {
+    // If using a custom driver:
+    // await this.storage.defineDriver(MyCustomDriver)
+    await this.ionStorage.create();
+  }
 }

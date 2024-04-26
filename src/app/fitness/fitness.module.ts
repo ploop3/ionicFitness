@@ -14,6 +14,7 @@ import { CardComponent } from './components/card/card.component';
 import { CardListComponent } from './components/card-list/card-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
+import { ObjectNgForPipe } from './pipes/ObjectNgFor.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SharedModule } from '../shared/shared.module';
     IonicModule,
     FormsModule,
     SharedModule,
+    ObjectNgForPipe,
   ],
 })
 export class FitnessModule {}

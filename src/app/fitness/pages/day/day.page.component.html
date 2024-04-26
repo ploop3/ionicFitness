@@ -2,10 +2,18 @@
 
 <ion-content padding>
   <ion-grid fixed>
-    <app-card-list
-      *ngFor="let workout of day.workouts; index as i"
-      [workout]="workout"
-      [workoutIndex]="i"
-    ></app-card-list>
+    <span *ngIf="finishLoadingStorage()">
+      <app-card-list
+        *ngFor="let key of day | objectNgFor; index as i"
+        [workout]="day[key]"
+        [workoutIndex]="i"
+      ></app-card-list>
+    </span>
+
+    <!-- <ul *ngIf="finishLoadingStorage()">
+      <li *ngFor="let key of day | objectNgFor">
+        <p>{{ day[key] | json }}</p>
+      </li>
+    </ul> -->
   </ion-grid>
 </ion-content>

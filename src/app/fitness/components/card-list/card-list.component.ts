@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Exercise, Workout } from '../../interfaces/training.interface';
-
 @Component({
   selector: 'app-card-list',
   templateUrl: './card-list.component.html',
@@ -16,5 +14,5 @@ export class CardListComponent implements OnInit {
   @Input()
   public workoutIndex: number = 0;
   @Input()
-  public workout!: Workout;
+  public workout: { [key: string]: any } = {};
 }
